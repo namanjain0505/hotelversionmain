@@ -1,15 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:loginout/payments.dart';
+
 import 'about.dart';
 import 'dashboard.dart';
-import 'start.dart';
 import 'login.dart';
-import 'registration.dart';
 import 'onboarding.dart';
-import 'settings.dart';
 import 'profile.dart';
+import 'registration.dart';
+import 'settings.dart';
+import 'start.dart';
 import 'terms_and_conditions.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hotel Booking',
       debugShowCheckedModeBanner: false,
-      scrollBehavior: MyScrollBehaviour(),
+      //scrollBehavior: MyScrollBehaviour(),
       routes: {
         'settings': (context) => Setting(),
         'dashboard': (context) => Dashboard(),
@@ -43,13 +43,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyScrollBehaviour extends MaterialScrollBehavior {
-  @override
-  Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
-    return child;
-  }
-}
 
 /*AnimatedSplashScreen(
         splash: Icons.star_border_purple500_sharp,

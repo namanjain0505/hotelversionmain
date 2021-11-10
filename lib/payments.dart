@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+
 import 'constants.dart';
+import 'datetime_picker_widget.dart';
 
 class PaymentsPage extends StatefulWidget {
   const PaymentsPage({Key? key, required this.price}) : super(key: key);
   final String price;
+
   @override
   _PaymentsPageState createState() => _PaymentsPageState();
 }
@@ -12,10 +15,11 @@ class PaymentsPage extends StatefulWidget {
 class _PaymentsPageState extends State<PaymentsPage> {
   late Razorpay razerPay;
   TextEditingController textEditingController = new TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    razerPay =  Razorpay();
+    razerPay = Razorpay();
     razerPay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlerPaymentSuccess);
     razerPay.on(Razorpay.EVENT_PAYMENT_ERROR, handlerPaymentError);
     razerPay.on(Razorpay.EVENT_EXTERNAL_WALLET, handlerExternalWallet);
@@ -30,7 +34,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
   void openCheckout() {
     var options = {
       "key": "rzp_test_JQKRIjfwNEz7lV",
-      "amount": num.parse(widget.price)* 100,
+      "amount": num.parse(widget.price) * 100,
       "name": 'Booking the hotel',
       'description': 'Pay the money',
       'prefill': {'email': 'Nikhil', 'contact': '123456789'},
@@ -46,18 +50,15 @@ class _PaymentsPageState extends State<PaymentsPage> {
   }
 
   void handlerPaymentSuccess(PaymentSuccessResponse response) {
-
     print('Payment Success');
-
   }
 
   void handlerPaymentError(PaymentFailureResponse response) {
-      print('Payment Error');
+    print('Payment Error');
   }
 
   void handlerExternalWallet(ExternalWalletResponse response) {
     print('Wallet gateway successful');
-
   }
 
   @override
@@ -75,18 +76,50 @@ class _PaymentsPageState extends State<PaymentsPage> {
         backgroundColor: Constants.buttonColor,
       ),
       body: Container(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              openCheckout();
-            },
-            style: ElevatedButton.styleFrom(primary: Constants.buttonColor),
-            child: Text('Pay Now',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Constants.textColor)),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: Text(
+                  "Check-In Time",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Constants.textColor),
+                )),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: DatetimePickerWidget(),
+            ),
+            Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: Text(
+                  "Check-Out Time",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Constants.textColor),
+                )),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: DatetimePickerWidget(),
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  openCheckout();
+                },
+                style: ElevatedButton.styleFrom(primary: Constants.buttonColor),
+                child: Text('Pay Now',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Constants.textColor)),
+              ),
+            ),
+          ],
         ),
       ),
     );

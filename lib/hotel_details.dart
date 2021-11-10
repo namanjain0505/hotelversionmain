@@ -134,7 +134,51 @@ class HotelDetailsPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      const SizedBox(height: 30.0),
+                      const SizedBox(height: 15.0),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          "Amenities",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(Icons.sports_esports),
+                              Text("Sports"),
+                            ],
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(Icons.local_parking),
+                              Text("Parking"),
+                            ],
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(Icons.local_bar),
+                              Text("Bar"),
+                            ],
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(Icons.wifi),
+                              Text("Wifi"),
+                            ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 15.0),
                       SizedBox(
                         width: double.infinity,
                         child: MaterialButton(
@@ -151,7 +195,12 @@ class HotelDetailsPage extends StatelessWidget {
                             horizontal: 32.0,
                           ),
                           onPressed: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context)=>PaymentsPage(price: price,)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PaymentsPage(
+                                          price: price,
+                                        )));
                           },
                         ),
                       ),
